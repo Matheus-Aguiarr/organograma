@@ -1,7 +1,18 @@
 import "./Formulario.css";
 import CampoTexto from "./CampoTexto";
+import ListaSuspensa from "./ListaSuspensa";
 
 const Formulario = () => {
+  const times = [
+    "Programação",
+    "Front End",
+    "Data Science",
+    "DevOps",
+    "UX e Design",
+    "Mobile",
+    "Inovação e Gestão",
+  ];
+
   return (
     <section className="formulario">
       <form action="">
@@ -12,6 +23,7 @@ const Formulario = () => {
           label={"Imagem"}
           placeholder={"Coloque o URL da sua imagem"}
         />
+        <ListaSuspensa itens={times} label="Time" />
       </form>
     </section>
   );
