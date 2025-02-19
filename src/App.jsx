@@ -2,6 +2,7 @@ import Banner from "./components/Banner.jsx";
 import Formulario from "./components/Formulario.jsx";
 import { useState } from "react";
 import Time from "./components/Time.jsx";
+import Rodape from "./components/Rodape.jsx";
 
 function App() {
   const times = [
@@ -72,6 +73,7 @@ function App() {
           )}
         />
       ))}
+      <Rodape />
     </div>
   );
 }
