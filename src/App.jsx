@@ -3,54 +3,74 @@ import Formulario from "./components/Formulario.jsx";
 import { useState } from "react";
 import Time from "./components/Time.jsx";
 import Rodape from "./components/Rodape.jsx";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const times = [
+  const [times, setTimes] = useState([
     {
+      id: uuidv4(),
       nome: "Programação",
       corPrimaria: "#57c278",
-      corSecundaria: "#d9f7e9",
     },
     {
+      id: uuidv4(),
       nome: "Front-End",
       corPrimaria: "#82cffa",
-      corSecundaria: "#e8f8ff",
     },
     {
+      id: uuidv4(),
       nome: "Data-Science",
       corPrimaria: "#a6d157",
-      corSecundaria: "#f0f8e2",
     },
     {
+      id: uuidv4(),
       nome: "DevOps",
       corPrimaria: "#e06b69",
-      corSecundaria: "#fde7e8",
     },
     {
+      id: uuidv4(),
       nome: "UX e Design",
       corPrimaria: "#db6ebf",
-      corSecundaria: "#fae9f5",
     },
     {
+      id: uuidv4(),
       nome: "Mobile",
       corPrimaria: "#ffba05",
-      corSecundaria: "#fff5d9",
     },
     {
+      id: uuidv4(),
       nome: "Inovação e Gestão",
       corPrimaria: "#ff8a29",
-      corSecundaria: "#ffeedf",
     },
-  ];
+  ]);
 
   const nomesTimes = times.map((time) => time.nome);
 
   const [colaboradores, setColaboradores] = useState([]);
 
   const aoNovoColaboradorAdicionado = (colaborador) => {
-    console.log(colaborador);
+    colaborador.id = uuidv4();
+    console.log(colaborador.id);
     setColaboradores([...colaboradores, colaborador]);
   };
+
+  function deletarColaborador(id) {
+    console.log("deletando colaborador", id);
+    setColaboradores(
+      colaboradores.filter((colaborador) => colaborador.id !== id)
+    );
+  }
+
+  function mudarCorDoTime(cor, id) {
+    setTimes(
+      times.map((time) => {
+        if (time.id === id) {
+          time.corPrimaria = cor;
+        }
+        return time;
+      })
+    );
+  }
 
   return (
     <div>
@@ -62,17 +82,22 @@ function App() {
         }
       />
 
-      {times.map((time) => (
-        <Time
-          nome={time.nome}
-          key={time.nome}
-          corPrimaria={time.corPrimaria}
-          corSecundaria={time.corSecundaria}
-          colaboradores={colaboradores.filter(
-            (colaborador) => colaborador.time === time.nome
-          )}
-        />
-      ))}
+      {times.map((time) => {
+        return (
+          <Time
+            mudarCor={mudarCorDoTime}
+            nome={time.nome}
+            key={time.id}
+            time={time}
+            corPrimaria={time.corPrimaria}
+            corSecundaria={time.corSecundaria}
+            colaboradores={colaboradores.filter(
+              (colaborador) => colaborador.time === time.nome
+            )}
+            aoDeletar={deletarColaborador}
+          />
+        );
+      })}
       <Rodape />
     </div>
   );

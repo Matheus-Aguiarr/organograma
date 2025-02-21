@@ -1,14 +1,23 @@
+import { IoMdCloseCircle } from "react-icons/io";
 import "./Colaborador.css";
 
-const Colaborador = ({ nome, cargo, imagem, cor }) => {
+const Colaborador = ({ colaborador, cor, aoDeletar }) => {
   return (
     <div className="colaborador">
+      <IoMdCloseCircle
+        size={25}
+        className="deletar"
+        onClick={() => aoDeletar(colaborador.id)}
+      />
       <div className="cabecalho" style={{ backgroundColor: cor }}>
-        <img src={imagem} alt={"Imagem do colaborador" + nome} />
+        <img
+          src={colaborador.imagem}
+          alt={"Imagem do colaborador" + colaborador.nome}
+        />
       </div>
       <div className="rodape">
-        <h4>{nome}</h4>
-        <h5>{cargo}</h5>
+        <h4>{colaborador.nome}</h4>
+        <h5>{colaborador.cargo}</h5>
       </div>
     </div>
   );
