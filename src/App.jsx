@@ -65,17 +65,25 @@ function App() {
     setTimes(
       times.map((time) => {
         if (time.id === id) {
-          time.corPrimaria = cor;
+          return { ...time, corPrimaria: cor };
         }
         return time;
       })
     );
   }
 
+  function cadastrarTime({ nome, cor }) {
+    if (!nome || !cor) {
+      console.error("nome e cor do time sao obrigatorios");
+    }
+    setTimes([...times, { nome, corPrimaria: cor, id: uuidv4() }]);
+  }
+
   return (
     <div>
       <Banner />
       <Formulario
+        aoCriarTime={cadastrarTime}
         times={nomesTimes}
         aoColaboradorCadastrado={(colaborador) =>
           aoNovoColaboradorAdicionado(colaborador)

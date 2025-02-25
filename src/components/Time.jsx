@@ -3,12 +3,15 @@ import Colaborador from "./Colaborador";
 import "./Time.css";
 
 const Time = ({ time, colaboradores, aoDeletar, mudarCor }) => {
+  console.log(time.corPrimaria);
+  const corPrimaria = time.corPrimaria || "#000";
+
   return (
     colaboradores.length > 0 && (
       <section
         className="time"
         style={{
-          backgroundColor: hexToRgba(time.corPrimaria, "0.6"),
+          backgroundColor: hexToRgba(corPrimaria, "0.6"),
         }}
       >
         <input
@@ -17,7 +20,7 @@ const Time = ({ time, colaboradores, aoDeletar, mudarCor }) => {
           className="input-cor"
           onChange={(evento) => mudarCor(evento.target.value, time.id)}
         />
-        <h3 style={{ borderBottom: `4px solid ${time.corPrimaria}` }}>
+        <h3 style={{ borderBottom: `4px solid ${corPrimaria}` }}>
           {time.nome}
         </h3>
         <div className="colaboradores" key={colaboradores.id}>
@@ -29,7 +32,7 @@ const Time = ({ time, colaboradores, aoDeletar, mudarCor }) => {
                 nome={colaborador.nome}
                 cargo={colaborador.cargo}
                 imagem={colaborador.imagem}
-                cor={time.corPrimaria}
+                cor={corPrimaria}
                 aoDeletar={aoDeletar}
               />
             );
