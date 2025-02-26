@@ -44,9 +44,20 @@ function App() {
     },
   ]);
 
+  const inicial = [
+    {
+      id: uuidv4(),
+      favorito: false,
+      nome: "Joao Paulo",
+      cargo: "desenvolvedor",
+      imagem: "https://github.com/joao.png",
+      time: times[0].nome,
+    },
+  ];
+
   const nomesTimes = times.map((time) => time.nome);
 
-  const [colaboradores, setColaboradores] = useState([]);
+  const [colaboradores, setColaboradores] = useState(inicial);
 
   const aoNovoColaboradorAdicionado = (colaborador) => {
     colaborador.id = uuidv4();
@@ -79,6 +90,15 @@ function App() {
     setTimes([...times, { nome, corPrimaria: cor, id: uuidv4() }]);
   }
 
+  function resolverFavorito(id) {
+    setColaboradores(
+      colaboradores.map((colaborador) => {
+        if (colaborador.id === id) colaborador.favorito = !colaborador.favorito;
+        return colaborador;
+      })
+    );
+  }
+
   return (
     <div>
       <Banner />
@@ -93,6 +113,7 @@ function App() {
       {times.map((time) => {
         return (
           <Time
+            aoFavoritar={resolverFavorito}
             mudarCor={mudarCorDoTime}
             nome={time.nome}
             key={time.id}

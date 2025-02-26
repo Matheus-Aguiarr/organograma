@@ -6,9 +6,10 @@ const CampoTexto = (props) => {
   };
 
   return (
-    <div className="campo-texto">
+    <div className={`campo-texto campo-${props.type}`}>
       <label htmlFor="">{props.label}</label>
       <input
+        type={props.type}
         onChange={aoDigitado}
         required={props.obrigatorio}
         placeholder={props.placeholder + "..."}
@@ -16,6 +17,10 @@ const CampoTexto = (props) => {
       />
     </div>
   );
+};
+
+CampoTexto.defaultProps = {
+  type: "text",
 };
 
 export default CampoTexto;

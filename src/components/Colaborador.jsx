@@ -1,7 +1,14 @@
 import { IoMdCloseCircle } from "react-icons/io";
+import { IoHeartSharp, IoHeartOutline } from "react-icons/io5";
 import "./Colaborador.css";
-
-const Colaborador = ({ colaborador, cor, aoDeletar }) => {
+const Colaborador = ({ colaborador, cor, aoDeletar, aoFavoritar }) => {
+  function favoritar() {
+    aoFavoritar(colaborador.id);
+  }
+  const propsFavorito = {
+    onClick: favoritar,
+    size: 25,
+  };
   return (
     <div className="colaborador">
       <IoMdCloseCircle
@@ -18,6 +25,13 @@ const Colaborador = ({ colaborador, cor, aoDeletar }) => {
       <div className="rodape">
         <h4>{colaborador.nome}</h4>
         <h5>{colaborador.cargo}</h5>
+        <div className="favoritar">
+          {colaborador.favorito ? (
+            <IoHeartSharp {...propsFavorito} className="heart" />
+          ) : (
+            <IoHeartOutline {...propsFavorito} className="heart" />
+          )}
+        </div>
       </div>
     </div>
   );

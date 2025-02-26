@@ -2,7 +2,7 @@ import hexToRgba from "hex-to-rgba";
 import Colaborador from "./Colaborador";
 import "./Time.css";
 
-const Time = ({ time, colaboradores, aoDeletar, mudarCor }) => {
+const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }) => {
   console.log(time.corPrimaria);
   const corPrimaria = time.corPrimaria || "#000";
 
@@ -34,6 +34,7 @@ const Time = ({ time, colaboradores, aoDeletar, mudarCor }) => {
                 imagem={colaborador.imagem}
                 cor={corPrimaria}
                 aoDeletar={aoDeletar}
+                aoFavoritar={aoFavoritar}
               />
             );
           })}

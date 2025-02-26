@@ -18,3 +18,8 @@
   border-radius: 8px;
   box-sizing: border-box;
 }
+
+.campo-color {
+  height: 90px;
+  padding: 3px 24px;
+}

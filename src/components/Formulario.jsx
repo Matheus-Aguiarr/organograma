@@ -66,7 +66,7 @@ const Formulario = ({ aoCriarTime, times, aoColaboradorCadastrado }) => {
           aoCriarTime({ nome: nomeTime, cor: corTime });
         }}
       >
-        <h2>Preencha os dados para criar o card do colaborador</h2>
+        <h2>Preencha os dados para criar o um novo time</h2>
         <CampoTexto
           obrigatorio
           label={"Nome"}
@@ -76,6 +76,7 @@ const Formulario = ({ aoCriarTime, times, aoColaboradorCadastrado }) => {
         />
         <CampoTexto
           label={"Cor"}
+          type="color"
           placeholder={"Digite a cor do time"}
           obrigatorio
           valor={corTime}
